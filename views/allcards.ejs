@@ -1,7 +1,9 @@
 <% include ../partials/header %>
 <link rel="stylesheet" type="text/css" href="/allcards.css">
 <body>
-	
+	 <% if(prods.length>0) 
+	    { %>
+
 		<div class="row" style="justify-content: center;align-content: space-around;justify-content: space-around;padding-left: 10px;padding-right: 10px;padding-top: 3%;padding-bottom: auto;margin-top: auto;margin-bottom: auto;flex-direction: row-reverse;">
 		
 			<div class="col-lg-8">
@@ -16,8 +18,8 @@
 						
 						<table style="background: ">
 							<tr>
-							<td style="width: 190px;height: 180px;border-radius: 60%;background-color:white; ">
-								
+							<td style="width: 190px;height: 180px;border-radius: 60%;background-color:white;color: black; ">
+							
 							</td>
 							
 							</tr>
@@ -30,8 +32,8 @@
 					</div>
 							
 						</td>
-						<td style="background-color:  #f5f5f5;width: 700px;height: 410px; ">
-							
+						<td style="background-color:#f5f5f5;width: 700px;height: 410px;">
+							<p style="color: black;"><%= prods[0].username %></p>
 						</td>
 						</tr>
 						
@@ -62,6 +64,8 @@
 
 			
 		</div>
+	<% }
+	%>
 		
 		
 

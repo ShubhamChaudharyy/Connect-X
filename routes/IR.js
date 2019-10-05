@@ -10,7 +10,15 @@ router.get('/',(req,res,next)=>{
 }
 );
 router.get('/profile',(req,res,next)=>{
-	res.render('allcards');
+	Product.find()
+	.then(products=>{
+		res.render('allcards',{
+         prods:products
+		});
+	})
+	
+
+
 
 
 });
@@ -37,15 +45,10 @@ const detail=new Product({
 
 
 });
-detail.save()
-.then(result=>{
-console.log('created database');
-console.log(detail);
-res.redirect('/');
-})
-.catch(err=>{
-	console.log(err);
-})
+detail.save();
+
+res.redirect('/profile');
+
 });
 module.exports=router;
 // /admin/add-product => POST
