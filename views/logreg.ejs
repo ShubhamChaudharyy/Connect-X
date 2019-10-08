@@ -3,24 +3,33 @@
 <body>
 <div class="row" style="padding-left: 50px;">
 <div class="col-lg-6 col-md-10 col-sm-10 col-xs-12">
-  <form style="margin-top: 5%;">
+  <form style="margin-top: 5%;" method="POST" action="/checkdata">
   <center>
   <h1>LOGIN</h1>
 </center>
   <center>
-  <div class="form-group">
+  <div class="form-group" >
     <label for="exampleInputEmail1" style="">Email address</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" style="width: 400px;">
+    <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" style="width: 400px;">
     <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+     <% if(notEmail)
+      {%>
+           <p style="font-size: 15px;color: red;padding-left: 25px;">*Email incorrect*</p>
+      <%}
+
+      %>
   </div>
   <div class="form-group">
     <label for="exampleInputPassword1" style="">Password</label>
-    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" style="width: 400px;border-radius: 25px;">
+    <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password" style="width: 400px;border-radius: 25px;">
+     <% if(notpassword)
+      {%>
+           <p style="font-size: 15px;color: red;padding-left: 25px;">*Password Incorrect*</p>
+      <%}
+
+      %>
   </div>
-  <div class="form-group form-check" style= >
-    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-    <label class="form-check-label" for="exampleCheck1">Check me out</label>
-  </div>
+ 
   </center>
   <center>
   <button type="submit" class="btn btn-primary" id="btn">Login</button>
@@ -29,7 +38,7 @@
 </div>
 <div class="col-lg-5 col-sm-10 col-xs-12 col-md-10">
 <center><p style="font-family: 'Raleway',sans-serif;color: white;" >Search.Seek.Connect</p>
-  <p style="font-family: 'Raleway',sans-serif; color: white;font-size: 25px;">Didn't Registered? <br>Register Now<br>  <button class="btn btn-primary"  type="submit" style="border-radius: 25px;width:160px;margin-top: 40px;" id="btn">Register Here</button></p></center>
+  <p style="font-family: 'Raleway',sans-serif; color: white;font-size: 25px;">Didn't Registered? <br>Register Now<br>  <button class="btn btn-primary"  type="submit" style="border-radius: 25px;width:160px;margin-top: 40px;" id="btn"><a href="/register" style="text-decoration: none;color: white;">Register Here</a></button></p></center>
   </div>
 
 

@@ -17,7 +17,7 @@ app.use(allroutes);
 
 
 mongoose.connect(
-    'mongodb+srv://shubham:159+357+555@neocode-wsaw6.mongodb.net/test?retryWrites=true&w=majority',{ useNewUrlParser: true }
+    'mongodb+srv://shubham2610:159+357+555@neocode-wsaw6.mongodb.net/test?retryWrites=true&w=majority',{ useNewUrlParser: true }
   )
 .then(result=>{
 	console.log('connected 101');

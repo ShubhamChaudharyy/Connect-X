@@ -5,7 +5,7 @@
 <div class="row" style="justify-content: center;display: flex;flex-direction: row-reverse;">
 	 <div class="col-lg-5 col-sm-10 col-xs-12 col-md-10">
 <center><p style="font-family: 'Raleway',sans-serif;color: white;" >Search.Seek.Connect</p>
-  <p style="font-family: 'Raleway',sans-serif; color: white;font-size: 25px;">Already Registered? <br>  <button class="btn btn-primary" id="btx" type="submit" style="border-radius: 25px;width:100px;margin-top: 40px;">Login</button></p></center>
+  <p style="font-family: 'Raleway',sans-serif; color: white;font-size: 25px;">Already Registered? <br>  <button class="btn btn-primary" id="btx" type="submit" style="border-radius: 25px;width:100px;margin-top: 40px;"><a href="/login" style="text-decoration: none;color: white;">Login</a></button></p></center>
   </div>
 	<div class="col-lg-6  col-md-10 col-xs-12 col-sm-10">
 
@@ -30,7 +30,25 @@
         </div>
         <input type="text" name="Username" class="form-control" id="validationDefaultUsername" placeholder="Username" aria-describedby="inputGroupPrepend2" required>
       </div>
+    
+     
     </div>
+    <div class="col-md-8 mb-3">
+      <label for="validationDefault02">E-Mail</label>
+      <input type="email" name="email" class="form-control" id="validationDefault02" placeholder="E-Mail"  required>
+       <% if(alreadyreg)
+      {%>
+           <p style="font-size: 15px;color: red;padding-left: 155px;">*E-mail ID already Registered*</p>
+      <%}
+
+      %>
+    </div>
+     
+   <div class="col-md-8 mb-3">
+      <label for="validationDefault02">Password</label>
+      <input type="password" name="password" class="form-control" id="validationDefault02" placeholder="Password must be atleast of 8 characters"  required>
+    </div>
+
   </div>
  <!-- <div class="form-row" style="justify-content: center;">
     <div class="col-md-6 mb-3">
