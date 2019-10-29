@@ -1,5 +1,5 @@
 body{
-	background:linear-gradient(-45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);
+
 		background-color: #fff;
 	background-size: 400% 400%;
 	position: relative;
@@ -8,6 +8,12 @@ body{
 	height: 100vh;
 	width: 100%;
 	animation: change 2s ease-in-out infinite;
+}
+.col-lg-5{
+	background-color: aliceblue;
+}
+.col-lg-7{
+	background-color: aliceblue;
 }
 
 .profilebg{

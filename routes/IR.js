@@ -1,5 +1,6 @@
 const Product=require('../model/user');
 const path = require('path');
+const bcrypt=require('bcryptjs');
 
 const express = require('express');
 
@@ -9,6 +10,9 @@ router.get('/',(req,res,next)=>{
 	res.render('landing');
 }
 );
+router.get('/skillspage/:productsId',(req,res,next)=>{
+  res.render('updateskill')
+});
 router.get('/profile',(req,res,next)=>{
 	Product.find()
 	.then(products=>{
@@ -16,12 +20,13 @@ router.get('/profile',(req,res,next)=>{
          prods:products
 		});
 	})
-	
-
-
-
-
 });
+ router.post('/addskill',(req,res,next)=>{
+  const skill=req.body.skill;
+  const prodId=req.body.ObjectId;
+  console.log(prodId);
+
+})
 router.get('/allpeople',(req,res,next)=>{
  res.render('people');
 });
@@ -42,26 +47,31 @@ const fname=req.body.fname;
 const lname=req.body.lname;
 const username=req.body.Username;
 
+
 Product.findOne({email:mail}).then(products=>{
 	if(products)
 	{
 		res.render('register',{alreadyreg:true});
 	}
-	else{
-		const detail=new Product({
+	return bcrypt.hash(password,12);
+	
+
+}).then(hashedPassword=>{
+
+
+	const detail=new Product({
 	firstname:fname,
 	lastname:lname,
 	username:username,
 	email:mail,
-	password:password
+	password:hashedPassword
 
 
 });
-		detail.save();
-		res.render('allcards',{prods:detail,isAuth:true});
-
-	}
-}).catch(err=>{
+ detail.save();
+res.render('allcards',{prods:detail,isAuth:true});
+})
+.catch(err=>{
 	console.log('not working');
 })
 
@@ -82,7 +92,7 @@ Product.findOne({email:mail})
 		Product.findOne({password:pass}).then(products=>{
 		if(products)
 		{ 
-			res.render('allcards',{prods:products,isAuth:true})
+			res.render('allcards',{prods:products,isAuth:true});
 			 
 		}
 		else{
@@ -90,18 +100,8 @@ Product.findOne({email:mail})
 		}
 
 	})
-		
-                                                       
-		
-			    
-			
-			
-		}
-	
-	
-	
-      
-    else{
+}
+	else{
     	res.render('logreg',{notpassword:false,notEmail:true});
     }
 }).catch(err=>{

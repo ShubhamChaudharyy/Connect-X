@@ -1,16 +1,91 @@
 <% include ../partials/header %>
 <link rel="stylesheet" type="text/css" href="/allcards.css">
-<body>
+<link href="https://fonts.googleapis.com/css?family=Archivo|Viga&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Archivo|Julius+Sans+One|Viga&display=swap" rel="stylesheet">
+
+
+<style>
+	.skills{
+		border-radius: 25px;
+		cursor: pointer;
+		box-sizing: border-box;
+		border-color: 2px solid black;
+		border: 2px black;
+		margin-bottom: 2px;;
+	}
+	.jumbotron{
+		background-color: white;
+	}
+	.bio-box{
+		box-sizing: border-box;
+		border: 2px solid black;
+		height: 200px;
+		width: 700px;
+		margin-left:3%;
+		margin-top: 10px;
+		
+	}
+	.profile-photo{
+		height: 160px;
+		width: 160px;
+		background-color: blanchedalmond;
+		border-radius: 50%;
+		margin-top:10px;
+		
+		
+
+	}
+	.heading-skills{
+		font-family: 'Rubik', sans-serif;
+		font-size: 20px;;
+		font-weight: 100;
+		font-style: bold;
+		cursor:pointer;
+	}
+</style>
+<body style="background-color: #e8e8e8;">
+	<div class="jumbotron jumbotron-fluid"></div>
 	
       <% if(isAuth)
          { %>
+			  <div class="row"><div class="col-lg-6 col-md-12">
+				  <center><a href="/skillspage/<%=prods._id%>" style="text-decoration: none;"><h1 class="heading-skills"><i class="fas fa-plus fa-1x" style="margin-right: 7px;font-size: 0.9em;cursor: pointer;">
+				</i><b>SKILL BUCKET</b>
+				</h1></a></center>
+			</div></div>
+			
+			<div class="row" style="margin-top: 15px;">
+					
+				<div class="col-lg-6 col-md-12" style="background-color: rgb(224, 219, 219);height: 400px;display: flex;justify-content: center;justify-content: space-around;flex-flow: column;">
+			
+					<div class="row" style="margin:100px 30px;">
+						
+					<center>
+				   <div  class="skills"  style="width: 200px;height: 50px;background-color:white"></div>
+				  
+					</center>
+					</div>
+				  
+			</div>
+			<div class="col-lg-6" style="background-color: white;height: 400px;">
+				<center>
+						<div class="profile-photo" >
 
+							</div>
+				</center>
+				
+		       
+				<div class="bio-box">
 
+				</div>
+			
+			</div>
+				
+			</div>
+			
+			
         
-		<div class="row">
-			<div class="col-lg-4 " style="background-color: white;"></div>
-			<%=prods.username%>
-		</div>
+	
 		<%}
 		%>
 
