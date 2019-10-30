@@ -1,4 +1,5 @@
 const Product=require('../model/user');
+const Story=require('../model/user');
 const path = require('path');
 const bcrypt=require('bcryptjs');
 
@@ -10,8 +11,9 @@ router.get('/',(req,res,next)=>{
 	res.render('landing');
 }
 );
-router.get('/skillspage/:productsId',(req,res,next)=>{
-  res.render('updateskill')
+router.get('/skillspage/:productId',(req,res,next)=>{
+	
+	res.render('updateskill',{presentID:req.params.productId,editing:false,SkillAdd:true});
 });
 router.get('/profile',(req,res,next)=>{
 	Product.find()
@@ -22,9 +24,28 @@ router.get('/profile',(req,res,next)=>{
 	})
 });
  router.post('/addskill',(req,res,next)=>{
-  const skill=req.body.skill;
-  const prodId=req.body.ObjectId;
-  console.log(prodId);
+  const updatedskills=req.body.skilldetail;
+  const prodId=req.body.productID;
+  Product.findById(prodId).then(products=>{
+	  if(products)
+	  {   
+		    const skilldetails=new Story({
+				title:updatedskills,
+				fans:prodId
+			})
+		  skilldetails.save();
+		  res.render('allcards',{prods:skilldetails,isAuth:true})
+	  }
+	  else{
+		  console.log("no records found");
+	  }
+	  
+
+  }).catch(err=>{
+	  console.log("not working");
+  })
+  
+ 
 
 })
 router.get('/allpeople',(req,res,next)=>{
@@ -74,12 +95,6 @@ res.render('allcards',{prods:detail,isAuth:true});
 .catch(err=>{
 	console.log('not working');
 })
-
-
-
-
-
-
 });
 router.post('/checkdata',(req,res,next)=>{
 const mail=req.body.email;

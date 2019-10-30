@@ -12,6 +12,8 @@
 		border-color: 2px solid black;
 		border: 2px black;
 		margin-bottom: 2px;;
+		margin-right: 10px;
+		margin-top: 10px;;
 	}
 	.jumbotron{
 		background-color: white;
@@ -19,10 +21,11 @@
 	.bio-box{
 		box-sizing: border-box;
 		border: 2px solid black;
-		height: 200px;
-		width: 700px;
+		height: 400px;
+		width: 200px;
 		margin-left:3%;
 		margin-top: 10px;
+		margin-bottom: 10px;;
 		
 	}
 	.profile-photo{
@@ -48,38 +51,38 @@
 	
       <% if(isAuth)
          { %>
-			  <div class="row"><div class="col-lg-6 col-md-12">
-				  <center><a href="/skillspage/<%=prods._id%>" style="text-decoration: none;"><h1 class="heading-skills"><i class="fas fa-plus fa-1x" style="margin-right: 7px;font-size: 0.9em;cursor: pointer;">
-				</i><b>SKILL BUCKET</b>
-				</h1></a></center>
-			</div></div>
+			  
 			
-			<div class="row" style="margin-top: 15px;">
+			<div class="row" style="margin-top: 15px;display: flex;">
 					
-				<div class="col-lg-6 col-md-12" style="background-color: rgb(224, 219, 219);height: 400px;display: flex;justify-content: center;justify-content: space-around;flex-flow: column;">
-			
-					<div class="row" style="margin:100px 30px;">
-						
+				<div class="col-lg-7" style="background-color: white;">
 					<center>
-				   <div  class="skills"  style="width: 200px;height: 50px;background-color:white"></div>
-				  
+							<div class="profile-photo" >
+	
+								</div>
 					</center>
+					
+				   
+					<div class="bio-box">
+	
+					</div>
+				
+				</div>
+				<div class="col-lg-5 col-md-12" style="background-color: rgb(224, 219, 219);">
+			   <center><a href="/skillspage/<%=prods._id%>">Add a Skill</a>></center>
+					<div class="row" style="margin:100px 30px;display: flex;justify-content: center;">
+		
+						
+				   <div  class="skills"  style="width: 200px;height: 50px;background-color:white"></div>
+				   
+				  
+				
+			
 					</div>
 				  
 			</div>
-			<div class="col-lg-6" style="background-color: white;height: 400px;">
-				<center>
-						<div class="profile-photo" >
-
-							</div>
-				</center>
-				
-		       
-				<div class="bio-box">
-
-				</div>
 			
-			</div>
+			
 				
 			</div>
 			

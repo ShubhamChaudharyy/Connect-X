@@ -1,27 +1,38 @@
 const mongoose=require('mongoose');
 const Schema=mongoose.Schema;
+
+
 const userSchema=new Schema({
 	email:{
-              type:String,
-              required:true
+              type:String
+           
 	},
 	password:{
-              type:String,
-              required:true
+              type:String
+              
 	},
 	firstname:{
-              type:String,
-              required:true
+              type:String
+             
 	},
 	lastname:{
-              type:String,
-              required:true
+              type:String
+             
 	},
 	username:{
-              type:String,
-              required:true
-	}
+              type:String
+            
+    },
+    skills:{
+        type:String
+    }
+
+    
 
 });
 
+
+
+
 module.exports=mongoose.model('Product',userSchema);
+module.exports = mongoose.model('Story', storySchema);
