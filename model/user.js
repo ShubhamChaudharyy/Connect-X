@@ -2,6 +2,7 @@ const mongoose=require('mongoose');
 const Schema=mongoose.Schema;
 
 
+
 const userSchema=new Schema({
 	email:{
               type:String
@@ -23,9 +24,8 @@ const userSchema=new Schema({
               type:String
             
     },
-    skills:{
-        type:String
-    }
+    skills:[{type:String
+    }]
 
     
 
@@ -34,5 +34,6 @@ const userSchema=new Schema({
 
 
 
+
 module.exports=mongoose.model('Product',userSchema);
-module.exports = mongoose.model('Story', storySchema);
+

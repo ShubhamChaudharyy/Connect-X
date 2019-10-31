@@ -15,12 +15,15 @@ router.get('/skillspage/:productId',(req,res,next)=>{
 	
 	res.render('updateskill',{presentID:req.params.productId,editing:false,SkillAdd:true});
 });
-router.get('/profile',(req,res,next)=>{
-	Product.find()
+router.get('/profile/:id',(req,res,next)=>{
+	Product.findById(req.params.id)
 	.then(products=>{
 		res.render('allcards',{
-         prods:products
+		 prods:products,
+		 isAuth:true
 		});
+	}).catch(err=>{
+		console.log(err);
 	})
 });
  router.post('/addskill',(req,res,next)=>{
@@ -29,12 +32,9 @@ router.get('/profile',(req,res,next)=>{
   Product.findById(prodId).then(products=>{
 	  if(products)
 	  {   
-		    const skilldetails=new Story({
-				title:updatedskills,
-				fans:prodId
-			})
-		  skilldetails.save();
-		  res.render('allcards',{prods:skilldetails,isAuth:true})
+			products.skills.push(updatedskills);
+	        products.save();
+		  res.redirect('/profile/'+prodId);
 	  }
 	  else{
 		  console.log("no records found");
@@ -48,6 +48,36 @@ router.get('/profile',(req,res,next)=>{
  
 
 })
+router.get('/profile/post-delete/:id',(req,res,next)=>{
+	Product.findById(req.params.id)
+	.then(products=>{
+		res.render('allcards',{
+		 prods:products,
+		 isAuth:true
+		});
+	}).catch(err=>{
+		console.log(err);
+	})
+})
+router.post('/delete',(req,res,next)=>{
+	const prodId=req.body.ID;
+	const skillname=req.body.specificskill;
+	Product.findByIdAndUpdate(prodId).then(products=>{
+		if(products)
+		{
+		  products.pull({skills:{$in:[skillname]}});
+	       res.redirect('/profile/post-delete/'+prodId);
+		}
+	   else {
+		   console.log("no records found");
+	   }
+	})
+    .catch(err=>{
+		console.log(err);
+	})
+	   
+
+});
 router.get('/allpeople',(req,res,next)=>{
  res.render('people');
 });
@@ -103,19 +133,21 @@ const pass=req.body.password;
 Product.findOne({email:mail})
 .then(products=>{
 	if(products)
-	{   const password=products.password;
-		Product.findOne({password:pass}).then(products=>{
-		if(products)
-		{ 
-			res.render('allcards',{prods:products,isAuth:true});
-			 
-		}
-		else{
-			res.render('logreg',{notpassword:true,notEmail:false});
-		}
+	{  
+		bcrypt.compare(pass,products.password).then(doMatch=>{
+			if(doMatch)
+			{
+				console.log("password matched");
+			    res.render('allcards',{prods:products,isAuth:true});
 
-	})
-}
+			}
+			res.render('logreg',{notpassword:true,notEmail:false});
+			     
+		}).catch(err=>{
+			console.log(err);
+		})
+			
+	}
 	else{
     	res.render('logreg',{notpassword:false,notEmail:true});
     }
@@ -129,7 +161,7 @@ Product.findOne({email:mail})
 });
 
 
-module.exports=router;
-// /admin/add-product => POST
+module.exports=router
+
 
 
