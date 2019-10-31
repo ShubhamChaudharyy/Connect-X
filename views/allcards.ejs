@@ -2,6 +2,8 @@
 <link rel="stylesheet" type="text/css" href="/allcards.css">
 <link href="https://fonts.googleapis.com/css?family=Archivo|Viga&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Archivo|Julius+Sans+One|Viga&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Asap:400,600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Asap:400,600|Comfortaa:400,700&display=swap" rel="stylesheet">
 
 
 <style>
@@ -29,11 +31,12 @@
 		
 	}
 	.profile-photo{
-		height: 160px;
-		width: 160px;
+		height: 200px;
+		width: 200px;
 		background-color: blanchedalmond;
 		border-radius: 50%;
-		margin-top:10px;
+		margin-top:20px;
+		
 		
 		
 
@@ -45,62 +48,56 @@
 		font-style: bold;
 		cursor:pointer;
 	}
+	.sections-profile{
+		font-family: 'Comfortaa', cursive;
+		font-weight: 600;
+		font-size: 30px;
+		height:20vh;
+	}
+	
 </style>
-<body style="background-color: #e8e8e8;">
-	<div class="jumbotron jumbotron-fluid"></div>
+<body style="background-color:#f5f5f5;">
+	<div class="jumbotron jumbotron-fluid" style="box-sizing: border-box; box-shadow: 0px 0px 15px rgb(214, 212, 212);" ></div>
+	<div class="row"><div class="col-lg-12" style="height: 70px;background-color: white;transform: translateY(-24px);box-sizing: border-box; box-shadow: 0px 0px 15px rgb(214, 212, 212);;">
+		<ul style="display: flex;flex-direction: row;justify-content: space-between;list-style: none;justify-content: space-around;padding-top: 20px;">
+				<li>EXPERIENCE</li>
+				<li>PROJECTS</li>
+				<li>ACHIEVEMENTS</li>
+				<li>HOME</li>
+				<li>LOGOUT</li>
+		</ul>
+		
+	</div> </div>
+	
 	
       <% if(isAuth)
          { %>
 			  
 			
-			<div class="row" style="margin-top: 15px;display: flex;">
+			<div class="row" style="display: flex;">
 					
-				<div class="col-lg-7" style="background-color: white;">
-					<center>
-							<div class="profile-photo" >
-	
-								</div>
-					</center>
+				<div class="col-lg-5 col-md-4" style="background-color: white;box-sizing: border-box; box-shadow: 0px 0px 15px rgb(214, 212, 212);border-radius: 20px;">
 					
-				   
-					<div class="bio-box">
-	
-					</div>
-				
-				</div>
-				<div class="col-lg-5 col-md-12" style="background-color: rgb(224, 219, 219);">
-			   <center><a href="/skillspage/<%=prods._id%>">Add a Skill</a>></center>
-					<div class="row" style="margin:100px 30px;display: flex;justify-content: center;">
+					
+							<center><a href="/skillspage/<%=prods._id%>">Add a Skill</a>></center>
+						 
+							   
+					
+
+					<div class="row" style="margin:100px 30px;display: flex;justify-content: center;background-color: white;padding: 10px 10px;">
 			   
-			<% for(product in prods.skills)
-			{%>
-				<div  class="skills"  style="width: 200px;height: 50px;background-color:white"><%=prods.skills[product]%> 
-					<form method="POST" action="/delete">
-					<button class="btn" type="submit">Delete</button>
-					<input type="hidden" value="<%=prods.skills[product]%>" name="specificskill">
-					<input type="hidden" value="<%=prods._id%>" name="ID">
-				</form></div>
-			<%}
-				
-			%>
-				 
-				  
-				   
-				  
-				
-			
-					</div>
-				  
-			</div>
-			
-			
-				
-			</div>
-			
-			
-        
-	
-		<%}
+							<% for(product in prods.skills)
+							{%>
+								<div  class="skills"  style="width: 200px;height: 50px;background-color :#f5f5f5;"><%=prods.skills[product]%> 
+									<form method="POST" action="/delete">
+									<button class="btn" type="submit">Delete</button>
+									<input type="hidden" value="<%=prods.skills[product]%>" name="specificskill">
+									<input type="hidden" value="<%=prods._id%>" name="ID">
+								</form></div>
+							<%}
+								
+							%></div>
+			</div></div><%}
 		%>
 
 		

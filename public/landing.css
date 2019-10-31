@@ -125,6 +125,15 @@ h1{
 
 
 }
+.heading-3::after{
+	content:"";
+	width: 10rem;
+	height:0.1rem;
+	background-color:rgb(255, 220, 64);
+	position: absolute;
+	bottom: -0.07em;
+	left: 19%;
+}
 h2{
 
 	font-weight: 100;

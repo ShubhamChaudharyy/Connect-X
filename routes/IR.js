@@ -62,10 +62,23 @@ router.get('/profile/post-delete/:id',(req,res,next)=>{
 router.post('/delete',(req,res,next)=>{
 	const prodId=req.body.ID;
 	const skillname=req.body.specificskill;
-	Product.findByIdAndUpdate(prodId).then(products=>{
+
+	Product.findById(prodId).then(products=>{
 		if(products)
 		{
-		  products.pull({skills:{$in:[skillname]}});
+			for(i in products.skills)
+			{
+				 if(products.skills[i]==skillname)
+				        var index=i;
+			}
+			var temp;
+			temp=products.skills[i];
+			products.skills[i]=products.skills[index];
+			products.skills[index]=temp;
+
+			
+		   products.skills.pop();
+		   products.save();
 	       res.redirect('/profile/post-delete/'+prodId);
 		}
 	   else {
