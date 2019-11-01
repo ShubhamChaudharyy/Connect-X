@@ -25,7 +25,27 @@ const userSchema=new Schema({
             
     },
     skills:[{type:String
-    }]
+	}],
+	name:{
+		type:String
+	  
+	 },
+	 college:{
+		type:String
+	  
+},
+     contact:{
+		type:String
+	  
+},
+ gender:{
+	type:String
+  
+},
+stream:{
+	type:String
+  
+}
 
     
 

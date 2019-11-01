@@ -91,6 +91,38 @@ router.post('/delete',(req,res,next)=>{
 	   
 
 });
+router.get('/saved/personaldetails/:id',(req,res,next)=>{
+	const prodId=req.params.id;
+	Product.findById(prodId).then(products=>{
+		res.render('allcards',{isAuth:true,prods:products,updated:true});
+	}).catch(err=>{
+		console.log('error')
+	})
+		
+
+})
+router.post('/personaldetails',(req,res,next)=>{
+   const name=req.body.name;
+   const college=req.body.college;
+   const gender=req.body.gender;
+   const contact=req.body.contact;
+   const stream=req.body.option;
+   const prodId=req.body.ID;
+   Product.findById(prodId).then(products=>{
+	   if(products)
+	   {
+		   products.name=name;
+		   products.college=college;
+		   products.gender=gender;
+		   products.contact=contact;
+		   products.stream=stream;
+		   products.save();
+		   res.redirect("/saved/personaldetails/"+prodId);
+	   }
+   }).catch(err=>{
+	   console.log('error');
+   })
+});
 router.get('/allpeople',(req,res,next)=>{
  res.render('people');
 });

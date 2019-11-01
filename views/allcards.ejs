@@ -5,20 +5,42 @@
 <link href="https://fonts.googleapis.com/css?family=Asap:400,600&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Asap:400,600|Comfortaa:400,700&display=swap" rel="stylesheet">
 
+<script>
+window.onload(function () {
+	setTimeout("location.reload(true);",2000);
+});
 
+
+
+
+</script>
 <style>
 	.skills{
-		border-radius: 25px;
+		border-radius: 5px;
 		cursor: pointer;
 		box-sizing: border-box;
+		box-shadow: 0px 0px 15px rgb(214, 212, 212);
 		border-color: 2px solid black;
 		border: 2px black;
 		margin-bottom: 2px;;
 		margin-right: 10px;
 		margin-top: 10px;;
+		background-color: #007bff;
+		font-family: 'Rubik',sans-serif;
+		color: white;
+		font-size: 25px;
+		padding: 5px 15px;
+	}
+	label{
+		color:#a1a1a1;
+
+	}
+	input{
+		font-family: 'Rubik',sans-serif;
 	}
 	.jumbotron{
 		background-color: white;
+		height: 70px;
 	}
 	.bio-box{
 		box-sizing: border-box;
@@ -41,6 +63,28 @@
 		
 
 	}
+	.list-nav:hover{
+		transition: 0.4s ease-in-out;
+		color: black;
+
+	}
+	.addskill:hover{
+transition: 0.3s ease;
+transform: scale(1.5) 1s ease;
+opacity:0.6;
+	}
+	row{
+		z-index: -999999999;
+	}
+	.list-nav{
+		margin-right: 70px;
+		font-size: 15px;
+		transform: translateX(-50px);
+		font-family: 'Raleway',sans-serif;
+		font-weight: 600px;
+		 color:#a1a1a1;
+		 cursor: pointer;
+	}
 	.heading-skills{
 		font-family: 'Rubik', sans-serif;
 		font-size: 20px;;
@@ -54,50 +98,129 @@
 		font-size: 30px;
 		height:20vh;
 	}
+	body{
+	
+	
+	}
 	
 </style>
 <body style="background-color:#f5f5f5;">
-	<div class="jumbotron jumbotron-fluid" style="box-sizing: border-box; box-shadow: 0px 0px 15px rgb(214, 212, 212);" ></div>
-	<div class="row"><div class="col-lg-12" style="height: 70px;background-color: white;transform: translateY(-24px);box-sizing: border-box; box-shadow: 0px 0px 15px rgb(214, 212, 212);;">
-		<ul style="display: flex;flex-direction: row;justify-content: space-between;list-style: none;justify-content: space-around;padding-top: 20px;">
-				<li>EXPERIENCE</li>
-				<li>PROJECTS</li>
-				<li>ACHIEVEMENTS</li>
-				<li>HOME</li>
-				<li>LOGOUT</li>
+	<div class="row" style="background-color: white;padding-bottom: 10px;">
+		<div class="col-lg-12" style="height:120px;margin-bottom: 10px;">
+			<div class="container">
+		   <h1 style="padding-top: 30px;font-family: 'Lato',sans-serif;">CONNECT X</h1>
+		</div>
+	</div> 
+</div>
+	<div class="row" style="margin-top: 10px;">
+		<div class="col-lg-12" style="height: 50px;background-color: white;transform: translateY(-24px);box-sizing: border-box;;">
+		<div class="container">
+		<ul style="display: flex;flex-direction: row;list-style: none;padding-top: 10px;">
+				<li class="list-nav"><b>PERSONAL DETAILS</b></li>
+				<li class="list-nav"><B>PROJECTS</B></li>
+				<li class="list-nav"><B>ACHIEVEMENTS</B></li>
+				<li class="list-nav"><B>LOGOUT</B></li>
+				
 		</ul>
+		<ul style="float: right;list-style: none;transform: translateY(-40px);font-family: 'Lato',sans-serif;font-weight: 600;">
+			<li>ALL CHANGES SAVED</li>
+		</ul>
+	</div>
 		
 	</div> </div>
+	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">ADD SKILL</button>
+
+	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+			  <div class="modal-content">
+				<div class="modal-header">
+				  <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+				  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				  </button>
+				</div>
+				<div class="modal-body">
+				  <form>
+					<div class="form-group">
+					  <label for="recipient-name" class="col-form-label">Recipient:</label>
+					  <input type="text" class="form-control" id="recipient-name">
+					</div>
+					<div class="form-group">
+					  <label for="message-text" class="col-form-label">Message:</label>
+					  <textarea class="form-control" id="message-text"></textarea>
+					</div>
+				  </form>
+				</div>
+				<div class="modal-footer">
+				  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				  <button type="button" class="btn btn-primary">Send message</button>
+				</div>
+			  </div>
+			</div>
+		  </div>
 	
 	
       <% if(isAuth)
          { %>
 			  
 			
-			<div class="row" style="display: flex;">
+			
+					<div class="container">
+							<div class="row" style="display: flex;justify-content: space-between;">
+				<div class="col-lg-6 col-md-10" style="height: ;background-color: white;border-radius: 10px;padding:40px 30px;margin-top: 30px;" >
+						<form method="POST" action="/personaldetails">
+								<div class="form-group">
+								  <label for="exampleInputEmail1">Name</label>
+								  <input type="text" name="name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Name"  value="<%=prods.name %>">
+								 
+								</div>
+								<div class="form-group">
+										<label for="exampleInputEmail1">College</label>
+										<input type="text" name="college" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Institution" value="<%=prods.college%>">
+										
+									  </div>
+									  <div class="form-group">
+											<label for="exampleInputEmail1">Contact</label>
+											<input type="text" name="contact" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Contact" value="<%=prods.contact%>">
+			
+										  </div>
+								<div class="form-group">
+								  <label for="exampleInputPassword1" value="">Gender</label>
+								  <input type="text" name="gender" class="form-control" id="exampleInputPassword1" placeholder="Male or Female" value="<%=prods.gender%>">
+								</div>
+								<input type="hidden" value="<%=prods._id%>" name="ID">
+								<label for="exampleInputPassword1">Stream</label>
+								<input type="">
+								<button type="submit" class="btn btn-primary" style="margin-top: 35px;">SAVE</button>
+							  </form>	
 					
-				<div class="col-lg-5 col-md-4" style="background-color: white;box-sizing: border-box; box-shadow: 0px 0px 15px rgb(214, 212, 212);border-radius: 20px;">
 					
+				</div>
+						<div class="col-lg-5 col-md-10" style="background-color: white;box-sizing: ;border-radius: 10px;margin-top: 30px;padding: 40px 5px;">
 					
-							<center><a href="/skillspage/<%=prods._id%>">Add a Skill</a>></center>
+	<center>
+		<a href="/skillspage/<%=prods._id%>" class="addskill" style="color:white;font-family: 'Raleway',sans-serif ;font-size: 20px;text-decoration: none; box-sizing: border-box;background-color: #007bff;;background-size: 400% 400%;;padding:10px 20px;border-radius: 20px; ">
+			<i class="fas fa-plus" style="color: black;margin-right: 20px;color:white"></i>ADD SKILL</a></center>
 						 
 							   
 					
 
-					<div class="row" style="margin:100px 30px;display: flex;justify-content: center;background-color: white;padding: 10px 10px;">
+					<div class="row" style="margin:30px 30px;display: flex;justify-content: center;background-color: white;padding: 10px 10px;">
 			   
 							<% for(product in prods.skills)
 							{%>
-								<div  class="skills"  style="width: 200px;height: 50px;background-color :#f5f5f5;"><%=prods.skills[product]%> 
-									<form method="POST" action="/delete">
-									<button class="btn" type="submit">Delete</button>
+								<div  class="skills"  style="height: 50px;"><form method="POST" action="/delete"><%=prods.skills[product]%><button class="btn" type="submit"><i class="fas fa-times"></i></button>
+									
+									
 									<input type="hidden" value="<%=prods.skills[product]%>" name="specificskill">
 									<input type="hidden" value="<%=prods._id%>" name="ID">
 								</form></div>
 							<%}
 								
 							%></div>
-			</div></div><%}
+			</div>
+		</div>
+		</div><%}
 		%>
 
 		
