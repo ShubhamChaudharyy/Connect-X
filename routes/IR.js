@@ -6,7 +6,18 @@ const bcrypt=require('bcryptjs');
 const express = require('express');
 
 const router = express.Router();
+router.get('/achievements/:id',(req,res,next)=>{
+Product.findById(req.params.id).then(products=>{
+  res.render('achievments',{prods:products});
+}).catch(err=>{
+console.log(err);
+})
+	
 
+	
+	
+
+})
 router.get('/',(req,res,next)=>{
 	res.render('landing');
 }
@@ -20,7 +31,8 @@ router.get('/profile/:id',(req,res,next)=>{
 	.then(products=>{
 		res.render('allcards',{
 		 prods:products,
-		 isAuth:true
+		 isAuth:true,
+		 updated:false
 		});
 	}).catch(err=>{
 		console.log(err);
@@ -53,7 +65,8 @@ router.get('/profile/post-delete/:id',(req,res,next)=>{
 	.then(products=>{
 		res.render('allcards',{
 		 prods:products,
-		 isAuth:true
+		 isAuth:true,
+		 updated:true
 		});
 	}).catch(err=>{
 		console.log(err);
@@ -106,8 +119,9 @@ router.post('/personaldetails',(req,res,next)=>{
    const college=req.body.college;
    const gender=req.body.gender;
    const contact=req.body.contact;
-   const stream=req.body.option;
+   const stream=req.body.streamname;
    const prodId=req.body.ID;
+   
    Product.findById(prodId).then(products=>{
 	   if(products)
 	   {
@@ -183,7 +197,7 @@ Product.findOne({email:mail})
 			if(doMatch)
 			{
 				console.log("password matched");
-			    res.render('allcards',{prods:products,isAuth:true});
+			    res.render('allcards',{prods:products,isAuth:true,updated:false});
 
 			}
 			res.render('logreg',{notpassword:true,notEmail:false});
