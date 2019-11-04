@@ -1,3 +1,3 @@
 # Connect-X
-A Full Stack College Website to enhance network for Departmental interviews.
+A Full Stack Networking Website..Preferably for college students
 
