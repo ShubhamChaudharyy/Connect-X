@@ -18,6 +18,7 @@ console.log(err);
 	
 
 })
+
 router.get('/',(req,res,next)=>{
 	res.render('landing');
 }

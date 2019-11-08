@@ -195,7 +195,7 @@ h3{
 h3::after{
 	
 	content: "";
-	width: 3rem;
+	width: 5rem;
 	height: 0.1rem;
 	background-color: white;
 	position: absolute;
@@ -264,4 +264,44 @@ h3::after{
     top: -10%;
     left: -10%;
   }
+}
+.sub-rows{
+	transform: translateY(100px);
+}
+@media screen and (max-width:500px)
+{
+	h1{
+	  font-size: 30px;
+	  font-weight: 400;
+	  font-family: 'Poppins',sans-serif;
+	  border:1px solid white;
+	}
+	h2{
+		font-size: 27px;
+		font-weight: 100;
+		font-family: 'Poppins',sans-serif;
+		color: #474747;
+	
+	}
+	h3{
+		font-size: 25px;
+		font-family: 'Rubik',sans-serif;
+	    margin-top: 20px;
+	}
+	h2::after{
+		width:2rem;
+	}
+	h3::after{
+		width:1rem;
+	}
+	.sub-rows{
+		padding: 0px 40px;
+		transform: translateY(30px);
+	}
+	.about-section{
+		margin-bottom: 20px;
+	}
+	.major33{
+		transform: translateY(-100px);
+	}
 }

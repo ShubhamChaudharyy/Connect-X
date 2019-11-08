@@ -1,6 +1,8 @@
 .form-group input{
 	border-radius: 25px;
+	width: 400px;
 }
+
 .col-lg-6{
 	background-color: white;margin-top: 15%;
 	height: 450px;
@@ -14,10 +16,10 @@ body{
 	overflow-x: hidden;
 background-color: #ff4e00;
 background-image: linear-gradient(315deg, #ff4e00 0%, #ec9f05 74%);
-
-	background-position: fixed;
+background-size: 100% 150%;
+	
 	height: 100vh;
-	width: 100%;
+	
 }
 h1{
 	font-family: 'Raleway',sans-serif;
@@ -35,4 +37,28 @@ background-image: linear-gradient(315deg, #ff4e00 0%, #ec9f05 74%);
 .col-lg-5
 {
 	margin-top: 15%;
+
+}
+@media screen and (max-width:500px)
+{
+    .col-lg-6{
+
+border-top-right-radius: 0%;
+	border-bottom-right-radius: 0%;
+	padding: 0px 10px;
+	transform: translateX(-25px);
+	}
+	.form-group input{
+		width: 300px;
+	}
+	.form-text{
+		font-size:15px;
+	}
+
+	.register-btn{
+		transform: translateY(-20px);
+	}
+	.col-lg-5{
+		transform: translateX(-15px);
+	}
 }
