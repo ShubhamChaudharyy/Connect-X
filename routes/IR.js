@@ -18,22 +18,57 @@ console.log(err);
 	
 
 })
+router.post('/add/projects-detail',(req,res,next)=>{
+	const project=req.body.project_name;
+	const project_detail=req.body.project_det;
+	const prodId=req.body.ID;
+	Product.findById(prodId).then(products=>{
+		console.log("hello");
+		if(products){
+			products.project.push({name:project,link:project_detail});
+			
+			products.save();
+			res.redirect('/profile/'+prodId);
+		}
+	}).catch(err=>{
+		console.log("no data found");
+	})
+})
+router.post("/addachievement",(req,res,next)=>{
+	const achievement=req.body.achievement_detail;
+
+
+    
+	const prodId=req.body.productID;
+	Product.findById(prodId).then(products=>{
+		if(products)
+		{
+			products.bucket.push(achievement);
+		
+			products.save();
+			res.redirect('/profile/'+prodId);
+		}
+
+	}).catch(err=>{
+	  console.log('no records found');
+	})
+	
+
+})
 
 router.get('/',(req,res,next)=>{
 	res.render('landing');
 }
 );
-router.get('/skillspage/:productId',(req,res,next)=>{
-	
-	res.render('updateskill',{presentID:req.params.productId,editing:false,SkillAdd:true});
-});
+
 router.get('/profile/:id',(req,res,next)=>{
 	Product.findById(req.params.id)
 	.then(products=>{
 		res.render('allcards',{
 		 prods:products,
 		 isAuth:true,
-		 updated:false
+		 updated:true,
+		 justreg:false
 		});
 	}).catch(err=>{
 		console.log(err);
@@ -67,13 +102,46 @@ router.get('/profile/post-delete/:id',(req,res,next)=>{
 		res.render('allcards',{
 		 prods:products,
 		 isAuth:true,
-		 updated:true
+		 updated:true,
+		 justreg:false
 		});
 	}).catch(err=>{
 		console.log(err);
 	})
 })
-router.post('/delete',(req,res,next)=>{
+router.post('/delete/achievement',(req,res,next)=>{
+	const prodId=req.body.ID;
+	const achieve_name=req.body.achievement_detail;
+
+	Product.findById(prodId).then(products=>{
+		if(products)
+		{
+			for( i in products.bucket)
+			{
+				 if(products.bucket[i]==achieve_name)
+				        var index=i;
+			}
+			var temp;
+			temp=products.bucket[i];
+			products.bucket[i]=products.bucket[index];
+			products.bucket[index]=temp;
+
+			
+		   products.bucket.pop();
+		   products.save();
+	       res.redirect('/profile/post-delete/'+prodId);
+		}
+	   else {
+		   console.log("no records found");
+	   }
+	})
+    .catch(err=>{
+		console.log(err);
+	})
+	   
+
+});
+router.post('/delete/skill',(req,res,next)=>{
 	const prodId=req.body.ID;
 	const skillname=req.body.specificskill;
 
@@ -108,7 +176,7 @@ router.post('/delete',(req,res,next)=>{
 router.get('/saved/personaldetails/:id',(req,res,next)=>{
 	const prodId=req.params.id;
 	Product.findById(prodId).then(products=>{
-		res.render('allcards',{isAuth:true,prods:products,updated:true});
+		res.render('allcards',{isAuth:true,prods:products,updated:true,justreg:false});
 	}).catch(err=>{
 		console.log('error')
 	})
@@ -180,7 +248,7 @@ Product.findOne({email:mail}).then(products=>{
 
 });
  detail.save();
-res.render('allcards',{prods:detail,isAuth:true});
+res.render('allcards',{prods:detail,isAuth:true,updated:true,justreg:true});
 })
 .catch(err=>{
 	console.log('not working');
@@ -198,7 +266,7 @@ Product.findOne({email:mail})
 			if(doMatch)
 			{
 				console.log("password matched");
-			    res.render('allcards',{prods:products,isAuth:true,updated:false});
+			    res.render('allcards',{prods:products,isAuth:true,updated:false,justreg:true});
 
 			}
 			res.render('logreg',{notpassword:true,notEmail:false});

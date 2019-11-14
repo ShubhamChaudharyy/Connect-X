@@ -5,7 +5,20 @@
 <link href="https://fonts.googleapis.com/css?family=Asap:400,600&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Asap:400,600|Comfortaa:400,700&display=swap" rel="stylesheet">
 
+<% if(!justreg)
+{%>
+<script>
+window.onload = function() {
+    if(!window.location.hash) {
+        window.location = window.location + '#loaded';
+        window.location.reload();
+    }
+}
+</script>
+<%}
 
+
+%>
 <style>
 	.skills{
 		border-radius: 5px;
@@ -118,6 +131,7 @@ opacity:0.6;
 	</div> 
 </div>
 
+
 	<div class="row" style="margin-top: 10px;">
 		<div class="col-lg-12" style="height: 50px;background-color: white;transform: translateY(-24px);box-sizing: border-box;;">
 		<div class="container">
@@ -223,7 +237,8 @@ opacity:0.6;
 			   
 							<% for(product in prods.skills)
 							{%>
-								<div  class="skills"  style="height: 50px;"><form method="POST" action="/delete"><%=prods.skills[product]%><button class="btn" type="submit"><i class="fas fa-times"></i></button>
+								<div  class="skills"  style="height: 50px;">
+									<form method="POST" action="/delete/skill"><%=prods.skills[product]%><button class="btn" type="submit"><i class="fas fa-times"></i></button>
 									
 									
 									<input type="hidden" value="<%=prods.skills[product]%>" name="specificskill">
@@ -236,6 +251,147 @@ opacity:0.6;
 		</div>
 		</div><%}
 		%></section>
+		<style>
+		.col-lg-3{
+			height: 200px;
+			background-color:#f5f5f5;
+			margin-top: 5px;
+			margin-right: 2px;
+			border-radius: 2%;
+			cursor:pointer;
+			
+			
+		}
+		.col-lg-3:hover{
+			background-color: rgb(104, 109, 112);
+
+		}
+		.projects{
+			background-color: white;
+		}
+		.col-lg-4{
+			height: 200px;
+			margin-top: 5px;
+			background-color:#f5f5f5;
+		
+			border-radius: 2%;
+			cursor:pointer;
+		}
+		
+		</style>
+		
+		
+		<div class="container" style="padding: 5px 20px;background-color: white;margin-top: 50px;">
+	
+				<h2 style="transform: translate(40px,30px);color: #a1a1a1;font-family:'Rubik', sans-serif;font-size: 25px;">PROJECTS</h2>
+					<div class="row" style="display: flex;justify-content: center;background-color: white;padding: 60px 5px;margin-top: 10px;">
+	
+						
+						
+							
+					<div class="col-lg-4 col-md-4">
+					<form method="POST" action="/add/projects-detail">
+					<input type="text" name="project_name" >
+					<input type="text" name="project_det">
+					<input type="hidden" value="<%=prods.id%>" name="ID">
+					<button type="submit">Add Project</button>
+				</form>
+			</div>
+			
+				<%
+				for(product in prods.project)
+				{%>
+					
+						<div class="col-lg-4" style="padding:10px 0px;">
+								  
+						<a href="<%=prods.project[product].link%>">
+							<center><h4><%=prods.project[product].name%></h4></a>
+							
+							</center>
+								  
+						</div>
+					
+
+				
+	
+					<%}
+				%>
+			
+				</div>
+											 
+			
+			
+
+	
+	</div>
+	
+	<div class="container Achievement-Bucket" style="margin-top: 50px; background-color: white;">
+			<div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+					<div class="modal-dialog" role="document">
+					  <div class="modal-content">
+						<div class="modal-header">
+						  <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+						  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						  </button>
+						</div>
+						<div class="modal-body">
+						  <form method="POST" action="/addachievement">
+							<div class="form-group">
+							  <label for="achievement-name" class="col-form-label">Achievement Description(Along With Outcome information)</label>
+							  <input type="text" class="form-control" id="recipient-name" name="achievement_detail" style="height: 60px;">
+							</div>
+							
+								
+							<div class="form-group">
+							<input type="hidden" value="<%=prods._id%>" id="recipient-name" name="productID">
+							</div>
+						
+								<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+								<button type="submit" class="btn btn-primary">Add</button>
+							
+						  </form>
+						</div>
+						
+					  </div>
+					</div>
+				  </div>
+			
+	
+	<style>
+	.achv-info{
+		background-color: white;
+		font-family: 'Rubik',sans-serif;
+		border-radius: 5px;
+		margin: 5px 5px;
+	    padding: 10px 5px;
+		background-color: rgb(224, 226, 226);
+	}
+	</style>
+		<h2 style="font-family:'Rubik',sans-serif; font-weight: 100;font-size: 25px;color: #a1a1a1;padding: 20px 5px;">ACHIEVEMENT BUCKET</h2>
+		<button type="button" class="btn btn-primary add-skill" data-toggle="modal" data-target="#exampleModal2" data-whatever="@getbootstrap">ADD ACHIEVEMENT</button></center>
+
+			<div class="row" style="margin:30px 30px;display: flex;justify-content: center;background-color: white;padding: 10px 10px;">
+			   
+					
+				<% for(product in prods.bucket)
+					{%>
+						<div  class="achv-info"  style="height: 50px;"><form method="POST" action="/delete/achievement"><%=prods.bucket[product]%><button class="btn" type="submit" ><i class="fas fa-times" ></i></button>
+							
+							
+							<input type="hidden" value="<%=prods.bucket[product]%>" name="achievement_detail">
+							<input type="hidden" value="<%=prods._id%>" name="ID" class="id-input">
+						</form>
+					</div>
+					<%}
+						
+					%>
+				</div>
+
+	
+	</div>
+	
+
 		
 		
 

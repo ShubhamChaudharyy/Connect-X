@@ -26,6 +26,9 @@ const userSchema=new Schema({
     },
     skills:[{type:String
 	}],
+	bucket:[{
+		type:String
+	}],
 	name:{
 		type:String
 	  
@@ -45,7 +48,17 @@ const userSchema=new Schema({
 stream:{
 	type:String
   
-}
+},
+project:[{
+	name:{
+		type:String
+	},
+	link:{
+		type:String
+	}
+
+
+}]
 
     
 
