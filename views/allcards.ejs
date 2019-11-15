@@ -89,6 +89,10 @@ window.onload = function() {
 		color: black;
 
 	}
+	.modal{
+		margin-top: 60px;
+		padding: 50px 50px;
+	}
 	.addskill:hover{
 transition: 0.3s ease;
 transform: scale(1.5) 1s ease;
@@ -160,7 +164,7 @@ opacity:0.6;
 			<div class="modal-dialog" role="document">
 			  <div class="modal-content">
 				<div class="modal-header">
-				  <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+			
 				  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				  </button>
@@ -278,36 +282,79 @@ opacity:0.6;
 			cursor:pointer;
 		}
 		
+		.btn{
+			padding: 5px 5px;;
+
+		}
+		
 		</style>
 		
 		
 		<div class="container" style="padding: 5px 20px;background-color: white;margin-top: 50px;">
 	
-				<h2 style="transform: translate(40px,30px);color: #a1a1a1;font-family:'Rubik', sans-serif;font-size: 25px;">PROJECTS</h2>
-					<div class="row" style="display: flex;justify-content: center;background-color: white;padding: 60px 5px;margin-top: 10px;">
+				<h2 style="transform: translate(40px,30px);color: #a1a1a1;font-family:'Raleway', sans-serif;font-size: 20px;float: left;"><b>PROJECTS</b></h2><button type="button" class="btn btn-primary add-skill" data-toggle="modal" data-target="#exampleModal3" data-whatever="@getbootstrap" style="transform:translate(50px,20px);width: 27px;height: 27px;;border-radius: 50%;"><i class="fas fa-plus fa-4x" style="font-size: 10px;transform: translateY(-14px);"></i></button></center>
+				<div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+						<div class="modal-dialog" role="document">
+						  <div class="modal-content">
+							<div class="modal-header">
+							  <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+							  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							  </button>
+							</div>
+							<div class="modal-body">
+									<form method="POST" action="/add/projects-detail">
+										<label >Project-Name</label>
+										<input type="text" name="project_name" class="form-control" >
+										<label >Project-Detail</label>
+										<input type="text" name="project_det"class='form-control'>
+										<label >Project-Link</label>
+										<input type="text" name="project_link" class="form-control">
+										<input type="hidden" value="<%=prods.id%>" name="ID">
+										<button type="submit" class="btn btn-primary" style="margin-top: 5px;">Add Project</button>
+									</form>
+							</div>
+							
+						  </div>
+						</div>
+					  </div>
+					
+				
+				
+				
+				<div class="row" style="display: flex;justify-content: center;background-color: white;padding: 60px 5px;margin-top: 10px;">
 	
 						
 						
 							
-					<div class="col-lg-4 col-md-4">
-					<form method="POST" action="/add/projects-detail">
-					<input type="text" name="project_name" >
-					<input type="text" name="project_det">
-					<input type="hidden" value="<%=prods.id%>" name="ID">
-					<button type="submit">Add Project</button>
-				</form>
-			</div>
+					
+							
+			
 			
 				<%
 				for(product in prods.project)
 				{%>
 					
-						<div class="col-lg-4" style="padding:10px 0px;">
+						<div class="col-lg-3" style="padding:10px 10px;">
 								  
-						<a href="<%=prods.project[product].link%>">
-							<center><h4><%=prods.project[product].name%></h4></a>
+						<form method="POST" action="/delete/project" >
+						
 							
-							</center>
+							
+							<button class="btn" type="submit" style="float:right;padding: 2px 10px;"><i class="fas fa-times-circle"></i></button>
+							
+									<input type="hidden" name="ID" value="<%=prods._id %>">
+									<input type="hidden" name="project_id" value="<%=prods.project[product]._id%>">
+						
+						</form>	
+						<div class="row">
+							<div class="col-lg-12">
+                               <a href="<%=prods.project[product].link%>" style="text-decoration: none;"><h4 style="color: rgb(77, 75, 75);font-family: 'Rubik',sans-serif;"><%=prods.project[product].name%></h4></a>
+						</div> 
+					</div>
+					<div class="row" style="padding: 2px 20px;">
+							<h8 style="font-family: 'Rubik',sans-serif ;color: rgb(77, 77, 77);font-weight: 100;"><%=prods.project[product].detail%></h6>
+					</div>
 								  
 						</div>
 					
@@ -367,16 +414,18 @@ opacity:0.6;
 	    padding: 10px 5px;
 		background-color: rgb(224, 226, 226);
 	}
-	</style>
-		<h2 style="font-family:'Rubik',sans-serif; font-weight: 100;font-size: 25px;color: #a1a1a1;padding: 20px 5px;">ACHIEVEMENT BUCKET</h2>
-		<button type="button" class="btn btn-primary add-skill" data-toggle="modal" data-target="#exampleModal2" data-whatever="@getbootstrap">ADD ACHIEVEMENT</button></center>
+	
 
+	</style>
+		<h2 style="font-family:'Raleway',sans-serif;font-size: 20px;color: #a1a1a1;padding: 20px 20px;float: left;"><b>ACHIEVEMENT BUCKET</b></h2><button type="button" class="btn btn-primary add-skill" data-toggle="modal" data-target="#exampleModal2" data-whatever="@getbootstrap" style="transform:translate(0px,10px);width: 27px;height: 27px;;border-radius: 50%;"><i class="fas fa-plus fa-4x" style="font-size: 10px;transform: translateY(-14px);"></i></button></center>
+
+		
 			<div class="row" style="margin:30px 30px;display: flex;justify-content: center;background-color: white;padding: 10px 10px;">
 			   
 					
 				<% for(product in prods.bucket)
 					{%>
-						<div  class="achv-info"  style="height: 50px;"><form method="POST" action="/delete/achievement"><%=prods.bucket[product]%><button class="btn" type="submit" ><i class="fas fa-times" ></i></button>
+						<div  class="achv-info"  ><form method="POST" action="/delete/achievement"><%=prods.bucket[product]%><button class="btn" type="submit" ><i class="fas fa-times" ></i></button>
 							
 							
 							<input type="hidden" value="<%=prods.bucket[product]%>" name="achievement_detail">

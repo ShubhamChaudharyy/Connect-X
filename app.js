@@ -2,6 +2,7 @@ var express=require('express');
 var app=express();
 var Product=require('./model/user')
 var mongoose=require('mongoose');
+mongoose.set('useFindAndModify', false);
 const mongoConnect=require('./util/database').mongoConnect;
 app.use(express.static(__dirname + '/public'));
 app.use(express.static(__dirname + '/js'));

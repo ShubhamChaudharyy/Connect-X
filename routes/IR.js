@@ -3,6 +3,7 @@ const Story=require('../model/user');
 const path = require('path');
 const bcrypt=require('bcryptjs');
 
+
 const express = require('express');
 
 const router = express.Router();
@@ -21,11 +22,12 @@ console.log(err);
 router.post('/add/projects-detail',(req,res,next)=>{
 	const project=req.body.project_name;
 	const project_detail=req.body.project_det;
+    const project_link=req.body.project_link;
 	const prodId=req.body.ID;
 	Product.findById(prodId).then(products=>{
 		console.log("hello");
 		if(products){
-			products.project.push({name:project,link:project_detail});
+			products.project.push({name:project,detail:project_detail,link:project_link});
 			
 			products.save();
 			res.redirect('/profile/'+prodId);
@@ -33,6 +35,26 @@ router.post('/add/projects-detail',(req,res,next)=>{
 	}).catch(err=>{
 		console.log("no data found");
 	})
+})
+router.post('/delete/project',(req,res,next)=>{
+	const projectId=req.body.project_id;
+	const prodId=req.body.ID;
+	
+	
+		
+			Product.findByIdAndUpdate(
+				prodId,
+				{ "$pull": { "project" : { _id: projectId}}},
+				{"new": true }
+			).then(()=>{
+				res.redirect('/profile/'+prodId)
+			}).catch(err=>{
+				console.log('pull not working');
+			})
+			
+		
+	
+	
 })
 router.post("/addachievement",(req,res,next)=>{
 	const achievement=req.body.achievement_detail;
