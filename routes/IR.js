@@ -84,11 +84,14 @@ router.get('/',(req,res,next)=>{
 );
 
 router.get('/profile/:id',(req,res,next)=>{
+	const isLoggedIn=req.get('Cookie')
+	const log=isLoggedIn.split('=')[1];
+
 	Product.findById(req.params.id)
 	.then(products=>{
 		res.render('allcards',{
 		 prods:products,
-		 isAuth:true,
+		 isAuth:log,
 		 updated:true,
 		 justreg:false
 		});
@@ -286,15 +289,14 @@ Product.findOne({email:mail})
 	{  
 		bcrypt.compare(pass,products.password).then(doMatch=>{
 			if(doMatch)
-			{
+			{   res.setHeader('Set-Cookie','loggedIn=true');
 				console.log("password matched");
-			    res.render('allcards',{prods:products,isAuth:true,updated:false,justreg:true});
+			    res.redirect('/profile/'+products._id);
 
 			}
+			else {
 			res.render('logreg',{notpassword:true,notEmail:false});
-			     
-		}).catch(err=>{
-			console.log(err);
+			}
 		})
 			
 	}
