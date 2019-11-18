@@ -289,10 +289,10 @@ Product.findOne({email:mail})
 	{  
 		bcrypt.compare(pass,products.password).then(doMatch=>{
 			if(doMatch)
-			{   res.setHeader('Set-Cookie','loggedIn=true');
-				console.log("password matched");
+			{   req.session.isLoggedIn=true;
+				req.session.products=products;
+			    req.session.save();
 			    res.redirect('/profile/'+products._id);
-
 			}
 			else {
 			res.render('logreg',{notpassword:true,notEmail:false});
@@ -311,6 +311,12 @@ Product.findOne({email:mail})
 
 
 });
+router.post('/delete-session',(req,res,next)=>{
+	req.session.destroy(err=>{
+		console.log(err);
+		res.redirect("/");
+	})
+})
 
 
 module.exports=router

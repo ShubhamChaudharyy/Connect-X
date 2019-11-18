@@ -143,7 +143,8 @@ opacity:0.6;
 				<li class="list-nav personal-detail"><b>PERSONAL DETAILS</b></li>
 				<li class="list-nav"><B>PROJECTS</B></li>
 				<li class="list-nav achieve-nav"><B>ACHIEVEMENTS</B></li>
-				<li class="list-nav"><B>LOGOUT</B></li>
+				
+				
 				
 		</ul>
 		<% if(updated)
@@ -151,7 +152,11 @@ opacity:0.6;
 
 		
 		<ul style="float: right;list-style: none;transform: translateY(-40px);font-family: 'Lato',sans-serif;font-weight: 600;">
-			<li>ALL CHANGES SAVED</li>
+			<form method="POST" action="/delete-session">
+				<button type="submit" style="background-color: transparent;border: none;outline-style: none;float: left;"><li class="list-nav" style="float: left;"><B>LOGOUT</B></li></button>
+			</form>
+			
+			
 		</ul>
 		<%}
 		%>
