@@ -2,6 +2,14 @@ const Product=require('../model/user');
 const Story=require('../model/user');
 const path = require('path');
 const bcrypt=require('bcryptjs');
+const nodemailer=require('nodemailer');
+const sendgridTransport=require('nodemailer-sendgrid-transport');
+ 
+const transporter=nodemailer.createTransport(sendgridTransport({
+	auth:{
+		api_key:'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'
+	}
+}))
 
 
 const express = require('express');
@@ -18,6 +26,9 @@ console.log(err);
 	
 	
 
+})
+router.get('/test/react',(req,res,next)=>{
+	res.render('testreact');
 })
 router.post('/add/projects-detail',(req,res,next)=>{
 	const project=req.body.project_name;
@@ -273,6 +284,7 @@ Product.findOne({email:mail}).then(products=>{
 
 });
  detail.save();
+ 
 res.render('allcards',{prods:detail,isAuth:true,updated:true,justreg:true});
 })
 .catch(err=>{
@@ -291,7 +303,13 @@ Product.findOne({email:mail})
 			if(doMatch)
 			{   req.session.isLoggedIn=true;
 				req.session.products=products;
-			    req.session.save();
+				req.session.save();
+				transporter.sendMail({
+					to:products.email,
+					from:'chd.nonu26@gmail.com',
+					subject:'succesfully signed Up',
+					html:'<h1>You Succesfully Signed Up</h1>'
+				});
 			    res.redirect('/profile/'+products._id);
 			}
 			else {
