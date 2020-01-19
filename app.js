@@ -3,7 +3,7 @@ var app=express();
 var session=require('express-session');
 var Product=require('./model/user')
 const MongoDbStore=require('connect-mongodb-session')(session);
-const MONGODB_URI='mongodb+srv://shubham2610:shubham9910@neocode-wsaw6.mongodb.net/test';
+const MONGODB_URI='mongodb+srv://dummy23:9910@cluster0-9l7z4.mongodb.net/test';
 var mongoose=require('mongoose');
 
 mongoose.set('useFindAndModify', false);
@@ -36,7 +36,7 @@ app.use(allroutes);
 
 
 mongoose.connect(
-    'mongodb+srv://shubham2610:shubham9910@neocode-wsaw6.mongodb.net/test',{ useNewUrlParser: true }
+    MONGODB_URI,{ useNewUrlParser: true }
   )
 .then(result=>{
 	console.log('connected 101');
