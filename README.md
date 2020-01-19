@@ -1,11 +1,16 @@
 # Connect-X
-A Full Stack Networking Website..that can conduct departmental interviews online.
+A Full Stack Networking Website..to build,share and access your profile digitally like in DevFolio.
 
 ```
 HOMEPAGE
 ```
 ![](https://github.com/ShubhamChaudharyy/Connect-X/blob/master/img/Screenshot%20(140).png)
+```
+Login and Register
 
+```
+![](https://github.com/ShubhamChaudharyy/Connect-X/blob/master/img/Screenshot%20(157).png)
+![](https://github.com/ShubhamChaudharyy/Connect-X/blob/master/img/Screenshot%20(158).png)
 ```
 DESCRIPTION YET TO BE ADDED
 ```
